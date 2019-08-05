@@ -1,0 +1,24 @@
+{
+  "name": "chatbox",
+  "version": "1.0.0",
+  "description": "Chat Box using nodeJs and socket.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rachit2501/ChatBox.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rachit2501/ChatBox/issues"
+  },
+  "homepage": "https://github.com/rachit2501/ChatBox#readme",
+  "dependencies": {
+    "express": "*",
+    "nodemon": "^1.19.1",
+    "socket.io": "*"
+  }
+}

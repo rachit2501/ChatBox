@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ChatIO</title>
+	<style>
+		body{
+			background : #f9f9f9;
+		}
+		#container{
+			width:700px;
+			margin:0 auto;
+		}
+		#chatWindow{
+			height:300px;
+		}
+		#mainWrapper{
+			display:none;
+		}
+		#chatWrapper{
+			float:left;
+			border:1px #ccc solid;
+			border-radius:10px;
+			background:#f4f4f4;
+			padding:10px;
+		}
+		#userWrapper{
+				float: :left;
+			border:1px #ccc solid;
+			border-radius:10px;
+			background:#f4f4f4;
+			padding:10px;
+			margin-left: 20px;
+			width:150px;
+			max-height: 200px;
+		}
+		#namesWrapper{
+			float: :left;
+			border:1px #ccc solid;
+			border-radius:10px;
+			background:#f4f4f4;
+			padding:10px;
+			margin-left: 20px;
+		}
+		input{
+			height:30px;
+		}
+	</style>
+</head>
+<body>
+	<div id = "container">
+		<div id = "namesWrapper">
+			<h2>ChatIO</h2>
+			<p>Create Username</p>
+			<form id = "usernameForm">
+				<input type = "text" size="35" id= "username">
+				<input type = "submit" value="Submit">
+			</form>
+		</div>
+
+		<div id="mainWrapper">
+			<h2>ChatIO</h2>
+			<div id="chatWrapper"></div>
+			<div id="chatWindow"></div>
+			<form id="messageForm"> 
+				<input type="text" size="35" id="message" placeholder="Say something....">
+				<input type="submit" value="Submit">
+			</form>
+			<div id="userWrapper">
+			<div id="users"></div>
+		</div>
+		</div>
+		
+	</div>
+
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<script src ="/socket.io/socket.io.js"></script>
+	<script>
+		$(function(){
+			var socket = io.connect();
+			var messageForm = $('#messageForm');
+	 		var message = $('#message');
+			var chat = $('#chatWindow');
+console.log("sdgsfdgs");
+			messageForm.submit(function(e){
+				e.preventDefault();
+				console.log("fdngfn");
+				socket.emit('send message' ,message.val());
+				message.val('');
+			});
+
+			socket.on('new message', function(data)
+			{
+				console.log(data);
+				chat.append(data.msg + '<br>');
+			});
+		});
+	</script>
+	</body>
+
+	</html>
